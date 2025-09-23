@@ -141,7 +141,7 @@ python evaluate.py
 
 ## 📌 Catatan
   ```
-* `chromedriver.exe` **tidak perlu di-commit**, karena bisa berbeda untuk tiap OS.
+* `chromedriver.exe` download sesuai chrome version, karena bisa berbeda untuk tiap device.
 
 ---
 
