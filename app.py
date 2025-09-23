@@ -13,7 +13,7 @@ st.title("Search Engine gg banget")
 query = st.text_input("Masukkan kata kunci:")
 
 if query:
-    hits = searcher.search(query, k=5)  # ambil 5 hasil teratas
+    hits = searcher.search(query, k=10)  # ambil 5 hasil teratas
 
     st.subheader(f"Hasil pencarian untuk: '{query}'")
 

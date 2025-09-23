@@ -6,7 +6,7 @@ from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 import nltk
 from nltk.corpus import stopwords
 
-# Download stopwords NLTK (sekali saja)
+# Download stopwords NLTK
 nltk.download('stopwords')
 
 # Buat stopwords bahasa Indonesia
@@ -18,7 +18,7 @@ stemmer = factory.create_stemmer()
 
 #%%
 # 1. Baca file Excel hasil scraping
-df = pd.read_excel("artikel-cleaning-final/data_gabungan.xlsx")   # ganti nama file sesuai hasil scraping
+df = pd.read_excel("artikel-cleaning-final/data_gabungan_normalized.xlsx")   # ganti nama file sesuai hasil scraping
 
 # 2. Hapus duplikat (berdasarkan judul)
 df = df.drop_duplicates(subset="title")
@@ -71,11 +71,11 @@ for col in ["title", "content"]:
 with open("json-file/docs.jsonl", "w", encoding="utf-8") as f:
     for i, row in df.iterrows():
         doc = {
-            "id": str(i+1),  # bikin id unik (1,2,3,...)
-            "contents": f"{row['title']} {row['content']}",  # isi utama yang diindex
-            "title": row["title"],       # info tambahan
-            "link": row["link"],         # info tambahan
-            "date": str(row["date"])     # info tambahan
+            "id": str(i+1),  
+            "contents": f"{row['title']} {row['content']}",  
+            "title": row["title"],       
+            "link": row["link"],         
+            "date": str(row["date"])     
         }
         f.write(json.dumps(doc, ensure_ascii=False) + "\n")
 
@@ -104,3 +104,4 @@ print(result.stderr)
 
 
 # %%
+
