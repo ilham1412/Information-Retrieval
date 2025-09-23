@@ -1,0 +1,19 @@
+# Abaikan virtual environment
+venvilham/
+.venv/
+venv/
+
+# Abaikan cache Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Abaikan log file
+*.log
+
+# Abaikan file sistem
+.DS_Store
+
+# Abaikan driver binary
+chromedriver.exe
