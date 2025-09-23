@@ -85,7 +85,7 @@ df["date"] = df["date"].apply(normalize_date)
 # simpan ke file baru
 df.to_excel("artikel-cleaning-final/data_gabungan_normalized.xlsx", index=False)
 
-print("✅ Normalisasi selesai! Kolom 'date' sudah diperbarui dan disimpan ke data_normalized.xlsx")
+print("Normalisasi selesai! Kolom 'date' sudah diperbarui dan disimpan ke data_normalized.xlsx")
 
 
 # %%
