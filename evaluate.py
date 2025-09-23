@@ -32,7 +32,7 @@ def load_docs(path):
 # ------------------------------------------------
 # 🔹 Daftar query yang kita anggap penting (domain teknologi)
 TECH_QUERIES = [
-    "transformasi digital"
+    "transformasi digital", "komputer", "ai"
 ]
 
 def build_ground_truth():

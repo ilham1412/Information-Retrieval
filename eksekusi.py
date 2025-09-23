@@ -26,9 +26,13 @@ df = df.drop_duplicates(subset="title")
 # 3. Hapus baris yang tidak ada content-nya
 df = df.dropna(subset=["content"])
 
-# 4. Hapus kolom tag (kalau ada)
+# 4. Hapus kolom tag (karena kosong)
 if "tag" in df.columns:
     df = df.drop(columns=["tag"])
+
+# 5.hapus kolom description(karena kosong)
+if "description" in df.columns:
+    df = df.drop(columns=["description"])
 
 #%%
 import json
@@ -40,17 +44,11 @@ def clean_text(text):
     # Hapus URL/link
     text = re.sub(r"http\S+|www\S+|https\S+", "", text)
 
-    # Hapus angka
-    text = re.sub(r"\d+", "", text)
-
     # Hapus tanda baca
     text = text.translate(str.maketrans("", "", string.punctuation))
 
     # Hapus karakter non-ascii (noise)
     text = re.sub(r"[^\x00-\x7f]", " ", text)
-
-    # Hapus whitespace berlebih
-    text = re.sub(r"\s+", " ", text).strip()
 
     return text
 
@@ -59,12 +57,16 @@ def remove_stopwords(text):
     filtered = [word for word in tokens if word not in stop_words]
     return " ".join(filtered)
 
+def stemming(text):
+    return stemmer.stem(text)
+
 
 # Terapkan ke kolom title, description, dan content
-for col in ["title", "description", "content"]:
+for col in ["title", "content"]:
     df[col] = df[col].astype(str)  # pastikan string
     df[col] = df[col].apply(clean_text)
     df[col] = df[col].apply(remove_stopwords)
+    df[col] = df[col].apply(stemming)
 
 with open("json-file/docs.jsonl", "w", encoding="utf-8") as f:
     for i, row in df.iterrows():
@@ -91,7 +93,6 @@ cmd = [
     "--index", "my_index",
     "--generator", "DefaultLuceneDocumentGenerator",
     "--threads", "1",
-    "--stemmer", "porter",
     "--storePositions",
     "--storeDocvectors",
     "--storeRaw"
