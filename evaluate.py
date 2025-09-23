@@ -32,7 +32,7 @@ def load_docs(path):
 # ------------------------------------------------
 # 🔹 Daftar query yang kita anggap penting (domain teknologi)
 TECH_QUERIES = [
-    "transformasi digital", "komputer", "ai"
+    "laptop gaming", "komputer", "ai" , "handphone"
 ]
 
 def build_ground_truth():
@@ -54,7 +54,7 @@ def build_ground_truth():
 # ------------------------------------------------
 # Evaluasi IR (precision, recall, F1)
 # ------------------------------------------------
-def evaluate_ir(k=10):
+def evaluate_ir(k=700):
     ground_truth, documents = build_ground_truth()
     all_precisions, all_recalls, all_f1s = [], [], []
 
@@ -91,8 +91,8 @@ def evaluate_ir(k=10):
         print(f"Recall    : {sum(all_recalls)/len(all_recalls):.2f}")
         print(f"F1-score  : {sum(all_f1s)/len(all_f1s):.2f}")
     else:
-        print("⚠️ Tidak ada hasil evaluasi (cek ground truth atau query).")
+        print("Tidak ada hasil evaluasi (cek ground truth atau query).")
 
 # ------------------------------------------------
 if __name__ == "__main__":
-    evaluate_ir(k=10)
+    evaluate_ir(k=700)
